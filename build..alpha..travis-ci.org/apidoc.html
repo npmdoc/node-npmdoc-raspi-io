@@ -1,0 +1,137 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/nebrius/raspi-io"
+
+    >raspi-io (v7.3.1)</a>
+</h1>
+<h4>A Firmata-compatible Raspberry Pi I/O API</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.raspi-io">module raspi-io</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.raspi-io.raspi-io">
+            function <span class="apidocSignatureSpan"></span>raspi-io
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.raspi-io" id="apidoc.module.raspi-io">module raspi-io</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.raspi-io.raspi-io" id="apidoc.element.raspi-io.raspi-io">
+        function <span class="apidocSignatureSpan"></span>raspi-io
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function RaspiIO() {
+  var _ref = arguments.length &#x3e; 0 &#x26;&#x26; arguments[0] !== undefined ? arguments[0] : {},
+      includePins = _ref.includePins,
+      excludePins = _ref.excludePins,
+      _ref$enableSoftPwm = _ref.enableSoftPwm,
+      enableSoftPwm = _ref$enableSoftPwm === undefined ? false : _ref$enableSoftPwm,
+      enableSerial = _ref.enableSerial;
+
+  var board = require(&#x27;raspi-board&#x27;);
+
+  var platform = {
+    &#x27;raspi&#x27;: require(&#x27;raspi&#x27;),
+    &#x27;raspi-board&#x27;: board,
+    &#x27;raspi-gpio&#x27;: require(&#x27;raspi-gpio&#x27;),
+    &#x27;raspi-i2c&#x27;: require(&#x27;raspi-i2c&#x27;),
+    &#x27;raspi-led&#x27;: require(&#x27;raspi-led&#x27;),
+    &#x27;raspi-pwm&#x27;: require(&#x27;raspi-pwm&#x27;)
+  };
+
+  if (typeof enableSerial === &#x27;undefined&#x27;) {
+    enableSerial = board.getBoardRevision() !== board.VERSION_3_MODEL_B;
+  }
+  if (enableSerial) {
+    platform[&#x27;raspi-serial&#x27;] = require(&#x27;raspi-serial&#x27;);
+  }
+
+  if (enableSoftPwm) {
+    platform[&#x27;raspi-soft-pwm&#x27;] = require(&#x27;raspi-soft-pwm&#x27;);
+  }
+
+  return new _raspiIoCore.RaspiIOCore({
+    includePins: includePins,
+    excludePins: excludePins,
+    enableSerial: enableSerial,
+    enableSoftPwm: enableSoftPwm,
+    platform: platform
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
